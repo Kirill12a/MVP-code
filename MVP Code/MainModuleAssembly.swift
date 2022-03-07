@@ -7,20 +7,22 @@
 
 import UIKit
 
-class MainModuleAssembly {
+class MainModuleAssembly
+{
 
-    class func configuredModule() -> UIViewController {
+  class func configuredModule() -> UIViewController   // можно func
+  {
 
-        let view = ViewController()
+    let view = ViewController()
+    
+    let presenter = MainViewPresenter()
+    let dataManager = DataManagerImplementation()
 
-        let presenter = MainViewPresenter()
-        let dataManager = DataManagerImplementation()
+    view.output = presenter
 
-        view.output = presenter
+    presenter.view = view
+    presenter.dataManager = dataManager
 
-        presenter.view = view
-        presenter.dataManager = dataManager
-
-        return view
-    }
+    return view
+  }
 }

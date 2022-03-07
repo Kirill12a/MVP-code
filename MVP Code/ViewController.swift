@@ -7,38 +7,39 @@
 
 import UIKit
 
-class ViewController: UIViewController, PresenterInput, MainViewDelegate{
+class ViewController: UIViewController
+{
 
+// -----------------------//
   var output: PresenterOuput!
-
-     var mainView = MainView()
-
-     override func loadView() {
-
-         view = mainView
-     }
-
-     override func viewDidLoad() {
-         super.viewDidLoad()
-
-         mainView.delegate = self
-     }
-
-     func showNumbers(_ numbers: [Int]) {
-
-         let numbersString = numbers.map({"\($0)"}).joined(separator: ",")
-
-         mainView.textLabel.text = numbersString
-     }
-
-     func actionDidPressed() {
-         output.didPressedAction()
-     }
+  var mainView = MainView()
 
 
+  override func loadView()
+  {
+    view = mainView
+  }
 
 
+  override func viewDidLoad()
+  {
+    super.viewDidLoad()
+    mainView.delegate = self
+  }
 }
 
 
-
+extension ViewController: PresenterInput {
+  func showNumbers(_ numbers: [Int])
+  {
+    let numbersString = numbers.map({"\($0)"}).joined(separator: "!")
+    mainView.textLabel.text = numbersString
+  }
+}
+/// ------------------------------
+extension ViewController: MainViewDelegate {
+  func actionDidPressed()
+  {
+    output.didPressedAction()
+  }
+}

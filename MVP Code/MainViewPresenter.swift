@@ -7,27 +7,26 @@
 
 import Foundation
 
-import Foundation
-
-protocol PresenterOuput: AnyObject {
-
-    func didPressedAction()
+protocol PresenterOuput: AnyObject
+{
+  func didPressedAction()
 }
-
-protocol PresenterInput: AnyObject {
-
-    func showNumbers(_ numbers: [Int])
+// ------------------------ //
+protocol PresenterInput: AnyObject
+{
+  func showNumbers(_ numbers: [Int])
 }
+// ------------------------ //
 
-class MainViewPresenter: PresenterOuput {
+class MainViewPresenter: PresenterOuput
+{
 
-    weak var view: PresenterInput!
-    var dataManager: DataManager!
+  weak var view: PresenterInput!
+  var dataManager: DataManager!
 
-    func didPressedAction() {
-
-        let numbers = dataManager.obtainNumbers()
-
-        view.showNumbers(numbers)
-    }
+  func didPressedAction()
+  {
+    let numbers = dataManager.obtainNumbers()
+    view.showNumbers(numbers)
+  }
 }
