@@ -7,13 +7,38 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, PresenterInput, MainViewDelegate{
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view.
-  }
+  var output: PresenterOuput!
+
+     var mainView = MainView()
+
+     override func loadView() {
+
+         view = mainView
+     }
+
+     override func viewDidLoad() {
+         super.viewDidLoad()
+
+         mainView.delegate = self
+     }
+
+     func showNumbers(_ numbers: [Int]) {
+
+         let numbersString = numbers.map({"\($0)"}).joined(separator: ",")
+
+         mainView.textLabel.text = numbersString
+     }
+
+     func actionDidPressed() {
+         output.didPressedAction()
+     }
+
+
 
 
 }
+
+
 
